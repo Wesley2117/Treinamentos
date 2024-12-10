@@ -1,0 +1,66 @@
+/* Resetando margens e preenchimentos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo do corpo da página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #2161d8;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Título */
+h1 {
+    font-size: 2.5rem;
+    color: #c90606;
+    margin-bottom: 20px;
+}
+
+/* Estilo da área de informações do jogador */
+p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+/* Estilo do canvas */
+#game-canvas {
+    border: 2px solid #333;
+    background-color: #cec8bd;
+    margin-top: 30px;
+    box-shadow: 0 0 10px rgba(112, 4, 4, 0.1);
+}
+
+/* Estilo das informações no topo (vidas, nome do jogador, etc) */
+#player-name,
+#lives,
+#level,
+#time-remaining {
+    font-weight: bold;
+    color: #333;
+}
+
+#player-name {
+    color: #ff6347;
+}
+
+/* Estilo para os números de lives, gemas e nível */
+span {
+    color: #00796b;
+}
+
+/* Adicionar alguns espaços para os elementos da interface */
+#game-info {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 20px;
+}
