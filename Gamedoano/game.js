@@ -80,7 +80,7 @@ function spawnEnemy() {
         const y = Math.random() * (canvas.height - size);
         const type = Math.random() < 0.5 ? "normal" : "shooter"; // Normal or shooter
         enemies.push({ x, y, width: size, height: size, color: "red", type, dx: Math.random() * 2 - 1, dy: Math.random() * 2 - 1, image: new Image() });
-        enemies[enemies.length - 1].image.src = '../Gamedoano/img/inimigo.png'; // Normal enemy sprite
+        enemies[enemies.length - 1].image.src = '../Gamedoano/img/inimigo01.png'; // Normal enemy sprite
     }
 }
 
@@ -112,8 +112,8 @@ function detectCollisions() {
             player.x + player.width > enemy.x &&
             player.y < enemy.y + enemy.height &&
             player.y + player.height > enemy.y) {
-            player.hp -= enemy.type === "shooter" ? 30 : 10; // Maior dano para inimigos do tipo "shooter"
-            enemies.splice(index, 1);
+            player.hp -= 50; // Inimigos causam 50 de dano
+            enemies.splice(index, 1); // Remove o inimigo após a colisão
             updateHud();
         }
     });
@@ -124,10 +124,12 @@ function detectCollisions() {
             player.y < item.y + item.height &&
             player.y + player.height > item.y) {
             if (item.type === "health") {
-                player.hp = Math.min(player.hp + 20, 100);
+                player.hp = Math.min(player.hp + 50, 100); // Recupera 50 de vida
             }
             items.splice(index, 1);
-            player.inventory.push(item.type);
+            if (!player.inventory.includes("health")) {
+                player.inventory.push("health"); // Apenas um item "health" no inventário
+            }
             updateHud();
         }
     });
@@ -138,6 +140,12 @@ function updateHud() {
     document.getElementById("level").textContent = `Nível: ${player.level}`;
     document.getElementById("score").textContent = `Pontuação: ${player.score}`;
     document.getElementById("inventory").textContent = `Inventário: ${player.inventory.join(", ") || "Nenhum item"}`;
+
+    if (player.hp <= 0) {
+        alert("Você morreu!");
+        player.hp = 0; // Garante que a vida não será negativa
+        // Aqui você pode adicionar lógica para reiniciar o jogo ou finalizar
+    }
 }
 
 function attackEnemy() {
@@ -148,7 +156,8 @@ function attackEnemy() {
                 player.y < enemy.y + enemy.height &&
                 player.y + player.height > enemy.y) {
                 player.attack = false; // Desativa o ataque após uma interação
-                enemy.hp -= player.attackDamage; // Dano causado pelo ataque do jogador
+                // Dano causado pelo ataque do jogador
+                enemy.hp -= player.attackDamage; 
                 if (enemy.hp <= 0) {
                     enemies.splice(index, 1);
                     player.score += 50;

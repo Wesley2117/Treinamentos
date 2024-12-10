@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo de Aventura</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./img/ico01.png" type="image/x-icon">
 </head>
 <body>
+<audio id="bg-music" autoplay loop>
+    <source src="music/trilhaterror.mp3" type="audio/mp3">
+    <source src="music/trilhaterror.ogg" type="audio/ogg"> 
+</audio>
+    
     <canvas id="gameCanvas"></canvas>
     <div id="hud">
         <p id="life">Vida: 100</p>
@@ -14,9 +20,7 @@
         <p id="score">Pontuação: 0</p>
         <p id="inventory">Inventário: Nenhum item</p>
     </div>
-    <audio id="bg-music" loop>
-        <source src="music/trilhaterror.mp3" type="audio/mp3">
-    </audio>
+
     <script src="game.js"></script>
 </body>
 </html>
